@@ -1,0 +1,42 @@
+# This Cloud Build pipeline builds + deploys the Backstage instance (backstage/) to the GKE admin cluster. 
+steps:
+# Build the backstage app with yarn https://backstage.io/docs/deployment/docker/#host-build 
+- name: "gcr.io/cloud-builders/yarn"
+  args:
+    - install
+# yarn tsc
+- name: "gcr.io/cloud-builders/yarn"
+  args:
+    - upgrade
+# yarn tsc
+- name: "gcr.io/cloud-builders/yarn"
+  args:
+    - tsc
+# yarn build !Cidr 
+- name: "gcr.io/cloud-builders/yarn"
+  args:
+    - build:backend
+    - --config
+    - app-config.yaml
+# Build Backstage container image
+- name: "gcr.io/cloud-builders/docker"
+  args: ["DOCKER_BUILDKIT=1", build", "-t", "europe-west1-docker.pkg.dev/lgu-demos/backstage/backstage:$COMMIT_SHA", "packages/backend"]
+# Push Backstage container image 
+- name: "gcr.io/cloud-builders/docker"
+  args: ["push", "europe-west1-docker.pkg.dev/lgu-demos/backstage/backstage:$COMMIT_SHA"]
+# Set backstage image in Kubernetes deployment manifest using sed 
+- name: "gcr.io/cloud-builders/gcloud"
+  entrypoint: "bash"
+  args:
+  - "-c"
+  - |
+    sed -i 's|gcr.io/mokeefe-test-6/backstage:latest|gcr.io/mokeefe-test-6/backstage:$COMMIT_SHA|g' kubernetes/backstage-deployment.yaml
+# Deploy Backstage to GKE
+- name: "gcr.io/cloud-builders/kubectl"
+  args:
+  - "apply"
+  - "-f"
+  - "kubernetes/backstage-deployment.yaml"
+  env:
+  - "CLOUDSDK_COMPUTE_ZONE=us-central1-a"
+  - "CLOUDSDK_CONTAINER_CLUSTER=backstage"
