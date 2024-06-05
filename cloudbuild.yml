@@ -1,8 +1,5 @@
 # This Cloud Build pipeline builds + deploys the Backstage instance (backstage/) to the GKE admin cluster. 
 steps:
-# Build Backstage container image
-- name: "gcr.io/cloud-builders/docker"
-  args: ["build", "-t", "europe-west1-docker.pkg.dev/lgu-demos/backstage/backstage:$COMMIT_SHA", "packages/backend"]
 # Build the backstage app with yarn https://backstage.io/docs/deployment/docker/#host-build 
 - name: "node:20"
   entrypoint: yarn
@@ -25,6 +22,11 @@ steps:
     - build:backend
     - --config
     - ../../app-config.yaml
+# Build Backstage container image
+- name: "gcr.io/cloud-builders/docker"
+  args: ["build", "-t", "europe-west1-docker.pkg.dev/lgu-demos/backstage/backstage:$COMMIT_SHA", "packages/backend"]
+  env:
+    - DOCKER_BUILDKIT=1
 # Push Backstage container image 
 - name: "gcr.io/cloud-builders/docker"
   args: ["push", "europe-west1-docker.pkg.dev/lgu-demos/backstage/backstage:$COMMIT_SHA"]
