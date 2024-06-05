@@ -5,16 +5,19 @@ steps:
   entrypoint: yarn
   args:
     - install
-# yarn tsc
-- name: "gcr.io/cloud-builders/yarn"
+# yarn upgrade
+- name: "node:20"
+  entrypoint: yarn
   args:
     - upgrade
 # yarn tsc
-- name: "gcr.io/cloud-builders/yarn"
+- name: "node:20"
+  entrypoint: yarn
   args:
     - tsc
 # yarn build !Cidr 
-- name: "gcr.io/cloud-builders/yarn"
+- name: "node:20"
+  entrypoint: yarn
   args:
     - build:backend
     - --config
