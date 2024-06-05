@@ -1,9 +1,9 @@
 # This Cloud Build pipeline builds + deploys the Backstage instance (backstage/) to the GKE admin cluster. 
 steps:
 # Build the backstage app with yarn https://backstage.io/docs/deployment/docker/#host-build 
-- name: "gcr.io/cloud-builders/yarn"
+- name: "node:20"
   args:
-    - install
+    - yarn install
 # yarn tsc
 - name: "gcr.io/cloud-builders/yarn"
   args:
