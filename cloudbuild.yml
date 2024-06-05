@@ -21,7 +21,7 @@ steps:
   args:
     - build:backend
     - --config
-    - app-config.yaml
+    - ../../app-config.yaml
 # Build Backstage container image
 - name: "gcr.io/cloud-builders/docker"
   args: ["DOCKER_BUILDKIT=1", build", "-t", "europe-west1-docker.pkg.dev/lgu-demos/backstage/backstage:$COMMIT_SHA", "packages/backend"]
