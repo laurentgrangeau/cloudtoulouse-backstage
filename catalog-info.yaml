@@ -2,12 +2,13 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: cloudtoulouse-backstage
-  description: An example of a Backstage application.
+  description: Backstage app for Cloud Toulouse.
   # Example for optional annotations
-  # annotations:
-  #   github.com/project-slug: backstage/backstage
-  #   backstage.io/techdocs-ref: dir:.
+  annotations:
+    google.com/cloudbuild-project-slug: lgu-demos
+    google.com/cloudbuild-trigger-name: cloudtoulouse-backstage
+    google.com/cloudbuild-location: europe-west1
 spec:
   type: website
-  owner: john@example.com
+  owner: laurent.grangeau@gmail.com
   lifecycle: experimental
