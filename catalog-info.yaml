@@ -8,6 +8,7 @@ metadata:
     google.com/cloudbuild-project-slug: lgu-demos
     google.com/cloudbuild-trigger-name: cloudtoulouse-backstage
     google.com/cloudbuild-location: europe-west1
+    backstage.io/kubernetes-id: backstage-cloudtoulouse
 spec:
   type: website
   owner: laurent.grangeau@gmail.com
