@@ -70,13 +70,16 @@ auth:
   environment: development
   # see https://backstage.io/docs/auth/ to learn about auth providers
   providers:
-    github:
+    google:
       development:
-        clientId: ${AUTH_GITHUB_CLIENT_ID}
-        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
+        clientId: ${AUTH_GOOGLE_CLIENT_ID}
+        clientSecret: ${AUTH_GOOGLE_CLIENT_SECRET}
         signIn:
           resolvers:
-            - resolver: usernameMatchingUserEntityName
+            # typically you would pick one of these
+            - resolver: emailMatchingUserEntityProfileEmail
+            - resolver: emailLocalPartMatchingUserEntityName
+            - resolver: emailMatchingUserEntityAnnotation
     # See https://backstage.io/docs/auth/guest/provider
     guest: {}
 
@@ -115,3 +118,14 @@ catalog:
     #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
     #   rules:
     #     - allow: [User, Group]
+
+kubernetes:
+  serviceLocatorMethod:
+    type: 'multiTenant'
+  clusterLocatorMethods:
+    - type: 'gke'
+      projectId: 'lgu-demos'
+      region: 'europe-west1-c'
+      skipTLSVerify: true
+      skipMetricsLookup: true
+      exposeDashboard: true
