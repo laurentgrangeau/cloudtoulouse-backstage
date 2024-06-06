@@ -56,6 +56,8 @@ import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 
 import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
 
+import { EntityCloudbuildContent, isCloudbuildAvailable } from '@backstage-community/plugin-cloudbuild';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -71,10 +73,11 @@ const cicdContent = (
     {/*
       Here you can add support for different CI/CD services, for example
       using @backstage-community/plugin-github-actions as follows:
-      <EntitySwitch.Case if={isGithubActionsAvailable}>
-        <EntityGithubActionsContent />
+      */
+      <EntitySwitch.Case if={isCloudbuildAvailable}>
+        <EntityCloudbuildContent />
       </EntitySwitch.Case>
-     */}
+    }
 
     <EntitySwitch.Case>
       <EmptyState
