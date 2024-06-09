@@ -2,6 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
   name: backstage
+  namespace: core-component
   description: Backstage for Cloud Toulouse
   links:
     - url: https://github.com/laurentgrangeau/cloudtoulouse-backstage
