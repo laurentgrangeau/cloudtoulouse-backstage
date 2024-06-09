@@ -1,8 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: onelineboutique
-  namespace: onelineboutique
+  name: oneline-boutique
   description: Microservices Demo
   links:
     - url: https://github.com/GoogleCloudPlatform/microservices-demo
