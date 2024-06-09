@@ -14,10 +14,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: cloudtoulouse-backstage
-  description: Backstage app for Cloud Toulouse.
-  # Example for optional annotations
-  annotations:
-    backstage.io/kubernetes-id: adservice
+  description: Backstage app for Cloud Toulouse
   annotations:
     google.com/cloudbuild-project-slug: lgu-demos
     google.com/cloudbuild-trigger-name: cloudtoulouse-backstage
