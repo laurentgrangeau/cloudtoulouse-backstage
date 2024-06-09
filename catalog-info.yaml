@@ -11,5 +11,5 @@ metadata:
     backstage.io/kubernetes-id: backstage-cloudtoulouse
 spec:
   type: website
-  owner: laurent.grangeau@gmail.com
+  owner: default/laurentgrangeau
   lifecycle: experimental
