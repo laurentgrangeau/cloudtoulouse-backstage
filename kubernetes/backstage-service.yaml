@@ -4,8 +4,6 @@ kind: Service
 metadata:
   name: backstage
   namespace: backstage
-  annotations:
-    cloud.google.com/neg: '{"ingress": true}'
 spec:
   selector:
     app: backstage

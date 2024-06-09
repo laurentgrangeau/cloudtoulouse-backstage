@@ -1,0 +1,17 @@
+kind: HTTPRoute
+apiVersion: gateway.networking.k8s.io/v1beta1
+metadata:
+  name: backstage-external
+  namespace: backstage
+  labels:
+    gateway: external-http
+spec:
+  parentRefs:
+  - name: external-http
+    namespace: default
+  hostnames:
+  - "backstage.laurentgrangeau.fr"
+  rules:
+  - backendRefs:
+    - name: backstage
+      port: 80
