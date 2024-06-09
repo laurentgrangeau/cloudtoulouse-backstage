@@ -51,3 +51,14 @@ catalog:
       target: https://github.com/laurentgrangeau/cloudtoulouse-backstage/blob/main/examples/org.yaml
       rules:
         - allow: [User, Group]
+
+kubernetes:
+  serviceLocatorMethod:
+    type: 'multiTenant'
+  clusterLocatorMethods:
+    - type: 'gke'
+      projectId: 'lgu-demos'
+      region: 'europe-west1-c'
+      skipTLSVerify: true
+      skipMetricsLookup: true
+      exposeDashboard: true
