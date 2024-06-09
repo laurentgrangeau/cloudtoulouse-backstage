@@ -13,6 +13,17 @@ kind: User
 metadata:
   name: laurentgrangeau
 spec:
+  profile:
+    displayName: Laurent Grangeau
+    email: laurent.grangeau@gmail.com
+  memberOf: [guests]
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-user
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: tjariault
+spec:
   memberOf: [guests]
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
