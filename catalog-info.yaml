@@ -1,4 +1,15 @@
 apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: backstage
+  description: Backstage for Cloud Toulouse
+  links:
+    - url: https://github.com/laurentgrangeau/cloudtoulouse-backstage
+      title: Backstage for Cloud Toulouse on GitHub
+spec:
+  owner: user:default/laurentgrangeau
+---
+apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: cloudtoulouse-backstage
