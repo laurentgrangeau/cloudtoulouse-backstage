@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: backstage
   namespace: backstage
-  label:
+  labels:
     app: backstage
     backstage.io/kubernetes-id: backstage-cloudtoulouse
 spec:
@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: backstage
-          image: europe-west1-docker.pkg.dev/lgu-demos/backstage/backstage:latest
+          image: europe-west1-docker.pkg.dev/lgu-demos/backstage/backstage:00b2298f491aeaa2e2e36b89c9bbb2aab54bef25
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
