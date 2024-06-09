@@ -1,0 +1,298 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: onelineboutique
+  namespace: onelineboutique
+  description: Microservices Demo
+  links:
+    - url: https://github.com/GoogleCloudPlatform/microservices-demo
+      title: Microservices Demo on GitHub
+spec:
+  owner: user:default/laurentgrangeau
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: adservice
+  description: Ad Service for Online Boutique
+  tags:
+    - java
+    - backend
+    - grpc
+  links:
+    - url: https://github.com/googlecloudplatform/microservices-demo
+      title: Online Boutique - Upstream repo
+      icon: help
+  annotations:
+    backstage.io/kubernetes-id: adservice
+
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/laurentgrangeau
+  system: online-boutique
+  # dependsOn: ['component:artists-db']
+  apiConsumedBy: ['component:frontend']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: cartservice
+  description: Cart Service for Online Boutique
+  tags:
+    - dotnet
+    - backend
+    - grpc
+  links:
+    - url: https://github.com/googlecloudplatform/microservices-demo
+      title: Online Boutique - Upstream repo
+      icon: help
+  annotations:
+    backstage.io/kubernetes-id: cartservice
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/laurentgrangeau
+  system: online-boutique
+  dependsOn: ['component:frontend', 'component:checkoutservice']
+  apiConsumedBy: ['component:rediscart']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: checkoutservice
+  description: checkout service
+  tags:
+    - golang
+    - backend
+    - grpc
+  links:
+    - url: https://github.com/googlecloudplatform/microservices-demo
+      title: Online Boutique - Upstream repo
+      icon: help
+  annotations:
+    backstage.io/kubernetes-id: checkoutservice
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/laurentgrangeau
+  system: online-boutique
+  dependsOn: ['component:frontend']
+  apiConsumedBy:
+  - 'component:cartservice'
+  - 'component:shippingservice'
+  - 'component:cartservice'
+  - 'component:paymentservice'
+  - 'component:emailservice'
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: currencyservice
+  description: currencyservice
+  tags:
+    - node
+    - backend
+    - grpc
+  links:
+    - url: https://github.com/googlecloudplatform/microservices-demo
+      title: Online Boutique - Upstream repo
+      icon: help
+  annotations:
+    backstage.io/kubernetes-id: currencyservice
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/laurentgrangeau
+  system: online-boutique
+  dependsOn: ['component:checkoutservice', 'component:frontend']
+  # apiConsumedBy:
+  # - 'component:cartservice'
+  # - 'component:shippingservice'
+  # - 'component:cartservice'
+  # - 'component:paymentservice'
+  # - 'component:emailservice'
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: emailservice
+  description: emailservice
+  tags:
+    - python
+    - backend
+    - grpc
+  links:
+    - url: https://github.com/googlecloudplatform/microservices-demo
+      title: Online Boutique - Upstream repo
+      icon: help
+  annotations:
+    backstage.io/kubernetes-id: emailservice
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/laurentgrangeau
+  system: online-boutique
+  dependsOn: ['component:checkoutservice']
+  # apiConsumedBy:
+  # - 'component:cartservice'
+  # - 'component:shippingservice'
+  # - 'component:cartservice'
+  # - 'component:paymentservice'
+  # - 'component:emailservice'
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: frontend
+  description: Frontend for Online Boutique
+  tags:
+    - golang
+    - frontend 
+    - http
+  links:
+    - url: https://github.com/googlecloudplatform/microservices-demo
+      title: Online Boutique - Upstream repo
+      icon: help
+  annotations:
+    backstage.io/kubernetes-id: frontend
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/laurentgrangeau
+  system: online-boutique
+  dependsOn:
+  - 'component:adservice'
+  # - .... more backends here 
+  # apiConsumedBy: ['component:frontend']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: loadgenerator
+  description: loadgenerator
+  tags:
+    - python
+    - loadgen
+  links:
+    - url: https://github.com/googlecloudplatform/microservices-demo
+      title: Online Boutique - Upstream repo
+      icon: help
+  annotations:
+    backstage.io/kubernetes-id: loadgenerator
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/laurentgrangeau
+  system: online-boutique
+  # dependsOn: ['component:frontend']
+  apiConsumedBy:
+  - 'component:frontend'
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: paymentservice
+  description: paymentservice
+  tags:
+    - node
+    - backend
+    - grpc
+  links:
+    - url: https://github.com/googlecloudplatform/microservices-demo
+      title: Online Boutique - Upstream repo
+      icon: help
+  annotations:
+    backstage.io/kubernetes-id: paymentservice
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/laurentgrangeau
+  system: online-boutique
+  dependsOn: ['component:checkoutservice']
+  # apiConsumedBy:
+  # - 'component:cartservice'
+  # - 'component:shippingservice'
+  # - 'component:cartservice'
+  # - 'component:paymentservice'
+  # - 'component:emailservice'
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: productcatalogservice
+  description: product catalog service
+  tags:
+    - golang
+    - backend
+    - grpc
+  links:
+    - url: https://github.com/googlecloudplatform/microservices-demo
+      title: Online Boutique - Upstream repo
+      icon: help
+  annotations:
+    backstage.io/kubernetes-id: productcatalogservice
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/laurentgrangeau
+  system: online-boutique
+  dependsOn: ['component:frontend', 'component:recommendationservice']
+  # apiConsumedBy:
+  # - 'component:cartservice'
+  # - 'component:shippingservice'
+  # - 'component:cartservice'
+  # - 'component:paymentservice'
+  # - 'component:emailservice'
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: recommendationservice
+  description: recommendationservice
+  tags:
+    - golang
+    - backend
+    - grpc
+  links:
+    - url: https://github.com/googlecloudplatform/microservices-demo
+      title: Online Boutique - Upstream repo
+      icon: help
+  annotations:
+    backstage.io/kubernetes-id: recommendationservice
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/laurentgrangeau
+  system: online-boutique
+  dependsOn: ['component:frontend']
+  apiConsumedBy:
+  - 'component:productcatalog'
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: shippingservice
+  description: shippingservice
+  tags:
+    - golang
+    - backend
+    - grpc
+  links:
+    - url: https://github.com/googlecloudplatform/microservices-demo
+      title: Online Boutique - Upstream repo
+      icon: help
+  annotations:
+    backstage.io/kubernetes-id: shippingservice
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/laurentgrangeau
+  system: online-boutique
+  dependsOn: ['component:frontend', 'component:checkoutservice']
+  # apiConsumedBy:
+  # - 'component:cartservice'
+  # - 'component:shippingservice'
+  # - 'component:cartservice'
+  # - 'component:paymentservice'
+  # - 'component:emailservice'
