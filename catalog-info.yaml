@@ -20,6 +20,7 @@ metadata:
     google.com/cloudbuild-trigger-name: cloudtoulouse-backstage
     google.com/cloudbuild-location: europe-west1
     backstage.io/kubernetes-id: backstage-cloudtoulouse
+    backstage.io/kubernetes-namespace: backstage
 spec:
   type: website
   owner: user:default/laurentgrangeau
