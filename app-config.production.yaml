@@ -43,7 +43,7 @@ catalog:
       target: https://github.com/laurentgrangeau/cloudtoulouse-backstage/blob/main/examples/entities.yaml
 
     - type: url
-      target: https://github.com/laurentgrangeau/cloudtoulouse-backstage/blob/main/examples/template/template.yaml
+      target: https://github.com/laurentgrangeau/cloudtoulouse-backstage/blob/main/examples/go/template.yaml
       rules:
         - allow: [Template]
 
