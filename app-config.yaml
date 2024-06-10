@@ -103,6 +103,12 @@ catalog:
       rules:
         - allow: [Template]
 
+    # Go template
+    - type: file
+      target: ../../examples/go/template.yaml
+      rules:
+        - allow: [Template]
+
     # Local example organizational data
     - type: file
       target: ../../examples/org.yaml
