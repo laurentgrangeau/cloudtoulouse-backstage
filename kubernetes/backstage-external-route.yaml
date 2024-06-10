@@ -7,11 +7,11 @@ metadata:
     gateway: external-http
 spec:
   parentRefs:
-  - name: external-http
-    namespace: default
+    - name: external-http
+      namespace: default
   hostnames:
-  - "backstage.laurentgrangeau.fr"
+    - "backstage.laurentgrangeau.fr"
   rules:
-  - backendRefs:
-    - name: backstage
-      port: 80
+    - backendRefs:
+        - name: backstage
+          port: 80

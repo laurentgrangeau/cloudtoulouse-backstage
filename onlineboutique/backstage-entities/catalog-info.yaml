@@ -25,14 +25,13 @@ metadata:
       icon: help
   annotations:
     backstage.io/kubernetes-id: adservice
-
 spec:
   type: service
   lifecycle: experimental
   owner: user:default/laurentgrangeau
   system: apps/online-boutique
   # dependsOn: ['component:artists-db']
-  apiConsumedBy: ['component:frontend']
+  apiConsumedBy: ["component:frontend"]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -54,8 +53,8 @@ spec:
   lifecycle: experimental
   owner: user:default/laurentgrangeau
   system: apps/online-boutique
-  dependsOn: ['component:frontend', 'component:checkoutservice']
-  apiConsumedBy: ['component:rediscart']
+  dependsOn: ["component:frontend", "component:checkoutservice"]
+  apiConsumedBy: ["component:rediscart"]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -77,13 +76,13 @@ spec:
   lifecycle: experimental
   owner: user:default/laurentgrangeau
   system: apps/online-boutique
-  dependsOn: ['component:frontend']
+  dependsOn: ["component:frontend"]
   apiConsumedBy:
-  - 'component:cartservice'
-  - 'component:shippingservice'
-  - 'component:cartservice'
-  - 'component:paymentservice'
-  - 'component:emailservice'
+    - "component:cartservice"
+    - "component:shippingservice"
+    - "component:cartservice"
+    - "component:paymentservice"
+    - "component:emailservice"
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -105,7 +104,7 @@ spec:
   lifecycle: experimental
   owner: user:default/laurentgrangeau
   system: apps/online-boutique
-  dependsOn: ['component:checkoutservice', 'component:frontend']
+  dependsOn: ["component:checkoutservice", "component:frontend"]
   # apiConsumedBy:
   # - 'component:cartservice'
   # - 'component:shippingservice'
@@ -133,7 +132,7 @@ spec:
   lifecycle: experimental
   owner: user:default/laurentgrangeau
   system: apps/online-boutique
-  dependsOn: ['component:checkoutservice']
+  dependsOn: ["component:checkoutservice"]
   # apiConsumedBy:
   # - 'component:cartservice'
   # - 'component:shippingservice'
@@ -148,7 +147,7 @@ metadata:
   description: Frontend for Online Boutique
   tags:
     - golang
-    - frontend 
+    - frontend
     - http
   links:
     - url: https://github.com/googlecloudplatform/microservices-demo
@@ -162,8 +161,8 @@ spec:
   owner: user:default/laurentgrangeau
   system: apps/online-boutique
   dependsOn:
-  - 'component:adservice'
-  # - .... more backends here 
+    - "component:adservice"
+  # - .... more backends here
   # apiConsumedBy: ['component:frontend']
 ---
 apiVersion: backstage.io/v1alpha1
@@ -187,7 +186,7 @@ spec:
   system: apps/online-boutique
   # dependsOn: ['component:frontend']
   apiConsumedBy:
-  - 'component:frontend'
+    - "component:frontend"
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -209,7 +208,7 @@ spec:
   lifecycle: experimental
   owner: user:default/laurentgrangeau
   system: apps/online-boutique
-  dependsOn: ['component:checkoutservice']
+  dependsOn: ["component:checkoutservice"]
   # apiConsumedBy:
   # - 'component:cartservice'
   # - 'component:shippingservice'
@@ -237,7 +236,7 @@ spec:
   lifecycle: experimental
   owner: user:default/laurentgrangeau
   system: apps/online-boutique
-  dependsOn: ['component:frontend', 'component:recommendationservice']
+  dependsOn: ["component:frontend", "component:recommendationservice"]
   # apiConsumedBy:
   # - 'component:cartservice'
   # - 'component:shippingservice'
@@ -265,9 +264,9 @@ spec:
   lifecycle: experimental
   owner: user:default/laurentgrangeau
   system: apps/online-boutique
-  dependsOn: ['component:frontend']
+  dependsOn: ["component:frontend"]
   apiConsumedBy:
-  - 'component:productcatalog'
+    - "component:productcatalog"
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -289,7 +288,7 @@ spec:
   lifecycle: experimental
   owner: user:default/laurentgrangeau
   system: apps/online-boutique
-  dependsOn: ['component:frontend', 'component:checkoutservice']
+  dependsOn: ["component:frontend", "component:checkoutservice"]
   # apiConsumedBy:
   # - 'component:cartservice'
   # - 'component:shippingservice'
