@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: oneline-boutique
+  name: online-boutique
   namespace: apps
   description: Microservices Demo
   links:
