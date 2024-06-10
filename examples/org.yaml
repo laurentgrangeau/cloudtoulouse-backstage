@@ -24,7 +24,6 @@ kind: User
 metadata:
   name: tjariault
 spec:
-spec:
   profile:
     displayName: Tony Jarriault
     email: tony.jarriault@sogeti.com
