@@ -6,7 +6,7 @@ metadata:
   namespace: backstage
   labels:
     app: backstage
-    backstage.io/kubernetes-id: backstage-cloudtoulouse
+    backstage.io/kubernetes-id: cloudnord-backstage
 spec:
   replicas: 1
   selector:
@@ -16,7 +16,7 @@ spec:
     metadata:
       labels:
         app: backstage
-        backstage.io/kubernetes-id: backstage-cloudtoulouse
+        backstage.io/kubernetes-id: cloudnord-backstage
     spec:
       containers:
         - name: backstage
